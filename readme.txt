@@ -12,11 +12,19 @@ Al recibir los mensajes, enviara de vuelta OK mas el mismo mensaje que leyo.
 Si recibe un mensaje de "adios" finalizará el hilo
 El programa acabará cuando finalizen los hilos de los 3 clientes.
 
--- Modificacion --
+-- Modificacion 1 --
 
 He dejado el hilo, y he creado otro, el objetivo, es que el ejercicio, ahora, lea del cliente un
 fichero, y el servidor le devuelva los datos contenidos en el. Para ello, cree un hilo de lectura
 de ficheros
+
+
+-- Modificacion 2 --
+
+He creado un par de clases que heredan del cliente y del servidor, para que el cliente envie 3 objetos
+del tipo Persona al servidor, y este se limita a leerlos, mostrar sus datos, y finalizar.
+El unico objetivo es trabajar con ObjectInputStream y ObjectOutputStream, pasandoles como parametro
+el socket cliente
 
 
 Ejercicio UDP

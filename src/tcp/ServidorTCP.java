@@ -7,10 +7,10 @@ import interfaz.InterfazConexiones;
 
 public class ServidorTCP implements InterfazConexiones{
 	// Atributos
-	private ServerSocket serverSocket;
-	private Socket socketCliente;
-	private int clientesConectados = 0;
-	private int clientesMax = 3;
+	protected ServerSocket serverSocket;
+	protected Socket socketCliente;
+	protected int clientesConectados = 0;
+	protected int clientesMax = 3;
 	
 	// Constructor
 	// El servidor estará a la escucha de nuevos clientes.
@@ -38,7 +38,7 @@ public class ServidorTCP implements InterfazConexiones{
 	
 	@Override
 	public void inicializar() throws Exception {
-		this.serverSocket = new ServerSocket(InterfazConexiones.PUERTO);
+		this.serverSocket = new ServerSocket(PUERTO);
 		System.out.println("Servidor inicializado");
 	}
 

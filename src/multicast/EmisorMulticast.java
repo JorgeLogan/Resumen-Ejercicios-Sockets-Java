@@ -34,9 +34,7 @@ public class EmisorMulticast implements InterfazConexiones{
 			
 			this.finalizar();
 		}
-		catch(Exception e) {
-			
-		}
+		catch(Exception e) {}
 	}
 	
 	

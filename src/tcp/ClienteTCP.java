@@ -21,11 +21,11 @@ import interfaz.InterfazConexiones;
  *
  */
 public class ClienteTCP implements InterfazConexiones {
-	private Socket socket; // El socket cliente
-	private BufferedReader lector; // Para leer del teclado los mensajes a enviar
-	private DataInputStream datosEntrada; // Para leer los datos del servidor
-	private DataOutputStream datosSalida; // Para enviar datos al servidor
-	private boolean salir = false; //
+	protected Socket socket; // El socket cliente
+	protected BufferedReader lector; // Para leer del teclado los mensajes a enviar
+	protected DataInputStream datosEntrada; // Para leer los datos del servidor
+	protected DataOutputStream datosSalida; // Para enviar datos al servidor
+	protected boolean salir = false; //
 	
 	
 	// Constructor
@@ -52,8 +52,8 @@ public class ClienteTCP implements InterfazConexiones {
 	@Override
 	public void inicializar() throws Exception {
 		this.socket = new Socket(InterfazConexiones.MI_HOST, InterfazConexiones.PUERTO);
-		this.datosEntrada = new DataInputStream(this.socket.getInputStream());
-		this.datosSalida = new DataOutputStream(this.socket.getOutputStream());
+		this.datosEntrada = new DataInputStream(this.getSocket().getInputStream());
+		this.datosSalida = new DataOutputStream(this.getSocket().getOutputStream());
 		this.lector = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Cliente inicializado");
 	}
@@ -88,8 +88,14 @@ public class ClienteTCP implements InterfazConexiones {
 	public void finalizar() throws Exception  {
 		this.datosEntrada.close();
 		this.datosSalida.close();
-		this.socket.close();
+		this.getSocket().close();
 		this.lector.close();
 		System.out.println("Cliente cerrado OK");
+	}
+
+	
+	// Getter del socket para trabajar en ClienteSerializable
+	public Socket getSocket() {
+		return socket;
 	}
 }

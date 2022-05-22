@@ -80,10 +80,5 @@ public class HiloLeerFicheros extends Thread implements InterfazConexiones{
 		this.datosEntrada.close();
 		this.datosSalida.close();
 		System.out.println("Hilo cliente cerrado con exito");
-	}
-
-public static void main(String[] args) {
-	
-}
-	
+	}																																																																																																																																																																													
 }
