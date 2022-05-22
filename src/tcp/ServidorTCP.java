@@ -15,8 +15,8 @@ public class ServidorTCP implements InterfazConexiones{
 	// Constructor
 	// El servidor estará a la escucha de nuevos clientes.
 	// Una vez recibido uno, creará un hilo para comunicarse con el cliente a traves del objeto HiloCliente
-	// Una vez reciba 3 clientes, dejará de estar a la escucha de nuevos clientes, y el programa se acabará
-	// cuando los hilos HiloCliente se cierren en el momento en que reciban la cadena de finalizacion
+	// Una vez reciba 3 clientes, dejará de estar a la escucha de nuevos clientes, y el programa se cerrara
+	// cuando los hilos activos finalizen enviando su mensaje de fin (adios)
 	public ServidorTCP() {
 		try {
 			this.inicializar();
@@ -48,6 +48,7 @@ public class ServidorTCP implements InterfazConexiones{
 		this.socketCliente = this.serverSocket.accept();
 		HiloClienteServidor hilo = new HiloClienteServidor(this.socketCliente);
 		hilo.start();
+		hilo.join(); // Para que no siga el flujo principal y cierre el socket mientras este funcionando el hilo
 	}
 
 	
