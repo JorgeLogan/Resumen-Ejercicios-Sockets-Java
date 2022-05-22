@@ -2,11 +2,16 @@ package tcp;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.net.Socket;
 
 import interfaz.InterfazConexiones;
 
-public class HiloClienteServidor extends Thread implements InterfazConexiones{
+
+// Clase hilo que recibira del cliente la direccion del un fichero, y posteriormente, abrirá la ruta del
+// fichero y leera sus datos para despues enviarlos al cliente
+public class HiloLeerFicheros extends Thread implements InterfazConexiones{
 	// Atributos
 	private Socket socketCliente;
 	private DataInputStream datosEntrada;
@@ -14,7 +19,7 @@ public class HiloClienteServidor extends Thread implements InterfazConexiones{
 	private boolean salir = false;
 	
 	// Constructor
-	public HiloClienteServidor(Socket socketCliente) {
+	public HiloLeerFicheros(Socket socketCliente) {
 		this.socketCliente = socketCliente;
 	}
 	
@@ -48,7 +53,22 @@ public class HiloClienteServidor extends Thread implements InterfazConexiones{
 		
 		// Comprobamos que no es un mensaje de cierre
 		if(mensaje.equals(InterfazConexiones.MENSAJE_FIN) == false) {
-			this.datosSalida.writeUTF("OK " + mensaje);
+			try {
+				mensaje = mensaje.trim(); // Por si hay espacios en blanco a ambos lados
+				FileInputStream lectorFichero = new FileInputStream(mensaje);
+				
+				// Leemos y convertimos los datos
+				byte[] datosLeidos = lectorFichero.readAllBytes();
+				String datosStr = new String(datosLeidos);
+				
+				// Enviamos los datos
+				datosSalida.writeUTF(datosStr.trim());	
+			}
+			catch(Exception e) {
+				String respuesta = "No se pudo leer el fichero: " + mensaje;
+				System.out.println(respuesta);
+				datosSalida.writeUTF(respuesta);	
+			}
 		}
 		else {
 			this.salir = true;
@@ -62,4 +82,8 @@ public class HiloClienteServidor extends Thread implements InterfazConexiones{
 		System.out.println("Hilo cliente cerrado con exito");
 	}
 
+public static void main(String[] args) {
+	
+}
+	
 }

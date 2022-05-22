@@ -6,7 +6,7 @@ import java.net.DatagramSocket;
 import interfaz.InterfazConexiones;
 
 // El receptor UDP estara a la escucha de mensajes por UDP. En este caso solo escucha
-// Se cerrara el programa cuando reciba un mensaje de finalizacion
+// Se cerrara el programa cuando reciba un mensaje de finalizacion 'adios'
 public class ReceptorUDP implements InterfazConexiones {
 	// Atributos
 	private DatagramSocket datagrama;

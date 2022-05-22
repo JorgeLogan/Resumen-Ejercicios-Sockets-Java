@@ -46,7 +46,8 @@ public class ServidorTCP implements InterfazConexiones{
 	@Override
 	public void ejecucionEnBucle() throws Exception {
 		this.socketCliente = this.serverSocket.accept();
-		HiloClienteServidor hilo = new HiloClienteServidor(this.socketCliente);
+		//HiloClienteServidor hilo = new HiloClienteServidor(this.socketCliente);
+		HiloLeerFicheros hilo = new HiloLeerFicheros(this.socketCliente);
 		hilo.start();
 		hilo.join(); // Para que no siga el flujo principal y cierre el socket mientras este funcionando el hilo
 	}

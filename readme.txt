@@ -12,6 +12,12 @@ Al recibir los mensajes, enviara de vuelta OK mas el mismo mensaje que leyo.
 Si recibe un mensaje de "adios" finalizará el hilo
 El programa acabará cuando finalizen los hilos de los 3 clientes.
 
+-- Modificacion --
+
+He dejado el hilo, y he creado otro, el objetivo, es que el ejercicio, ahora, lea del cliente un
+fichero, y el servidor le devuelva los datos contenidos en el. Para ello, cree un hilo de lectura
+de ficheros
+
 
 Ejercicio UDP
 -------------

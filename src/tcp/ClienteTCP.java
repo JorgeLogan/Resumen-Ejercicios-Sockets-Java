@@ -70,7 +70,8 @@ public class ClienteTCP implements InterfazConexiones {
 		this.datosSalida.writeUTF(mensaje);
 		
 		// Comprobamos que el mensaje no es de finalizacion (salida) antes de escuchar respuesta
-		if(mensaje.equals("adios") == false) {		
+		if(mensaje.equals("adios") == false) {	
+			
 			// Luego escuchamos del servidor su respuesta
 			String respuesta = this.datosEntrada.readUTF();
 			System.out.println("Recibimos respuesta del servidor: " + respuesta);			
